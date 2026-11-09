@@ -1,0 +1,11 @@
+model,size,replicate,wall_seconds_predict,identical_to_kept,max_abs_difference,node,checkpoint_md5
+zigzag_1s14,80,70,330.13,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,71,283.1,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,72,315.29,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,73,318.55,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,74,283.09,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,75,257.31,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,76,261.5,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,77,243.89,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,78,266.98,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+zigzag_1s14,80,79,264.78,True,0.0,node1855.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c

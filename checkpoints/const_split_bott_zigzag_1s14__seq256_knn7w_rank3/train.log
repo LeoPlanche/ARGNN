@@ -1,0 +1,200 @@
+Device cuda | train sizes [10, 20, 50] | held-out test sizes [100] | scenarios ['const', 'split', 'bott', 'zigzag_1s14']
+hidden=128 gru=128x2 mp=4 metric=64 type8 decoder=avg_constr gamma=0.0 mse_w=1.0 jk=None input=local_greedy seq_len=256 hap_window=1(k=0) rank_w=1.0(tau=1.0,levels=3,decay=0.5) knn_k=7 (UPGMA + similarity-weighted kNN edges) grad_ckpt=True eval_slide_margin=64
+checkpoint → gnn_v7_varsize_rk1.0L3_knn7w_best_const_split_bott_zigzag_1s14__seq256_knn7w_rank3.pt
+Loading data ...
+  S=10: 10270 train / 2049 val seqs (scenarios ['const', 'split', 'bott', 'zigzag_1s14'], files 0..19), val files [20, 21, 22, 23]
+  S=20: 13115 train / 2620 val seqs (scenarios ['const', 'split', 'bott', 'zigzag_1s14'], files 0..19), val files [20, 21, 22, 23]
+  S=50: 17035 train / 3407 val seqs (scenarios ['const', 'split', 'bott', 'zigzag_1s14'], files 0..19), val files [20, 21, 22, 23]
+  S=100 (HELD OUT): test files 0..23
+  Loading time: 6435.5 s
+  Parameters: 924,306
+
+ Ep |  TR loss TR corr |  TE loss TE corr
+──────────────────────────────────────────────
+      per size: loss (1-pearson, mse, rank), loss = 1-pearson + 1 * mse + 1 * rank
+  1 |   0.8423  0.8160 |   0.7954  0.8423 ✓
+      S=10   TR 0.7415 (1-pearson 0.1667, mse 0.0682, rank 0.5067) | VA 0.7089 (1-pearson 0.1502, mse 0.0825, rank 0.4762)
+      S=20   TR 0.8146 (1-pearson 0.1665, mse 0.0619, rank 0.5861) | VA 0.7761 (1-pearson 0.1494, mse 0.0756, rank 0.5511)
+      S=50   TR 0.9243 (1-pearson 0.1975, mse 0.0594, rank 0.6675) | VA 0.8625 (1-pearson 0.1691, mse 0.0618, rank 0.6317)
+      time 5078.5 s: training 4811.8 s (building batches 559.7 s), validation and saving 266.7 s | lr 1.0000e-03
+  2 |   0.7935  0.8440 |   0.7889  0.8434 ✓
+      S=10   TR 0.7066 (1-pearson 0.1489, mse 0.0773, rank 0.4804) | VA 0.7049 (1-pearson 0.1492, mse 0.0838, rank 0.4719)
+      S=20   TR 0.7736 (1-pearson 0.1492, mse 0.0697, rank 0.5548) | VA 0.7699 (1-pearson 0.1511, mse 0.0750, rank 0.5439)
+      S=50   TR 0.8611 (1-pearson 0.1663, mse 0.0605, rank 0.6344) | VA 0.8544 (1-pearson 0.1667, mse 0.0656, rank 0.6222)
+      time 5157.4 s: training 4890.1 s (building batches 607.1 s), validation and saving 267.3 s | lr 9.9726e-04
+  3 |   0.7881  0.8459 |   0.7840  0.8456 ✓
+      S=10   TR 0.7043 (1-pearson 0.1481, mse 0.0787, rank 0.4775) | VA 0.7033 (1-pearson 0.1487, mse 0.0815, rank 0.4732)
+      S=20   TR 0.7689 (1-pearson 0.1481, mse 0.0715, rank 0.5492) | VA 0.7665 (1-pearson 0.1490, mse 0.0739, rank 0.5435)
+      S=50   TR 0.8535 (1-pearson 0.1639, mse 0.0617, rank 0.6279) | VA 0.8463 (1-pearson 0.1633, mse 0.0620, rank 0.6211)
+      time 5188.7 s: training 4922.0 s (building batches 567.3 s), validation and saving 266.8 s | lr 9.8907e-04
+  4 |   0.7852  0.8470 |   0.7814  0.8459 ✓
+      S=10   TR 0.7022 (1-pearson 0.1474, mse 0.0782, rank 0.4766) | VA 0.7022 (1-pearson 0.1490, mse 0.0822, rank 0.4710)
+      S=20   TR 0.7667 (1-pearson 0.1476, mse 0.0720, rank 0.5472) | VA 0.7646 (1-pearson 0.1496, mse 0.0756, rank 0.5394)
+      S=50   TR 0.8495 (1-pearson 0.1626, mse 0.0620, rank 0.6249) | VA 0.8423 (1-pearson 0.1630, mse 0.0637, rank 0.6156)
+      time 5216.4 s: training 4945.5 s (building batches 568.0 s), validation and saving 270.9 s | lr 9.7553e-04
+  5 |   0.7836  0.8476 |   0.7826  0.8482
+      S=10   TR 0.7016 (1-pearson 0.1471, mse 0.0784, rank 0.4761) | VA 0.7044 (1-pearson 0.1473, mse 0.0909, rank 0.4662)
+      S=20   TR 0.7653 (1-pearson 0.1472, mse 0.0722, rank 0.5458) | VA 0.7663 (1-pearson 0.1468, mse 0.0841, rank 0.5354)
+      S=50   TR 0.8471 (1-pearson 0.1617, mse 0.0623, rank 0.6230) | VA 0.8425 (1-pearson 0.1605, mse 0.0713, rank 0.6108)
+      time 5264.5 s: training 4989.5 s (building batches 580.4 s), validation and saving 275.0 s | lr 9.5677e-04
+  6 |   0.7824  0.8480 |   0.7810  0.8455 ✓
+      S=10   TR 0.7008 (1-pearson 0.1468, mse 0.0781, rank 0.4759) | VA 0.7022 (1-pearson 0.1487, mse 0.0841, rank 0.4693)
+      S=20   TR 0.7643 (1-pearson 0.1470, mse 0.0728, rank 0.5445) | VA 0.7650 (1-pearson 0.1502, mse 0.0798, rank 0.5350)
+      S=50   TR 0.8455 (1-pearson 0.1614, mse 0.0628, rank 0.6213) | VA 0.8411 (1-pearson 0.1627, mse 0.0663, rank 0.6121)
+      time 5224.6 s: training 4958.5 s (building batches 581.8 s), validation and saving 266.1 s | lr 9.3301e-04
+  7 |   0.7814  0.8484 |   0.7815  0.8463
+      S=10   TR 0.7004 (1-pearson 0.1465, mse 0.0776, rank 0.4762) | VA 0.7039 (1-pearson 0.1471, mse 0.0698, rank 0.4870)
+      S=20   TR 0.7634 (1-pearson 0.1469, mse 0.0729, rank 0.5437) | VA 0.7650 (1-pearson 0.1492, mse 0.0671, rank 0.5487)
+      S=50   TR 0.8440 (1-pearson 0.1609, mse 0.0629, rank 0.6201) | VA 0.8414 (1-pearson 0.1629, mse 0.0581, rank 0.6203)
+      time 5133.6 s: training 4867.5 s (building batches 559.2 s), validation and saving 266.1 s | lr 9.0451e-04
+  8 |   0.7801  0.8488 |   0.7792  0.8477 ✓
+      S=10   TR 0.6996 (1-pearson 0.1461, mse 0.0770, rank 0.4764) | VA 0.7028 (1-pearson 0.1462, mse 0.0769, rank 0.4796)
+      S=20   TR 0.7625 (1-pearson 0.1467, mse 0.0731, rank 0.5427) | VA 0.7629 (1-pearson 0.1478, mse 0.0725, rank 0.5425)
+      S=50   TR 0.8423 (1-pearson 0.1605, mse 0.0633, rank 0.6185) | VA 0.8380 (1-pearson 0.1626, mse 0.0619, rank 0.6135)
+      time 4965.6 s: training 4707.1 s (building batches 540.9 s), validation and saving 258.5 s | lr 8.7157e-04
+  9 |   0.7795  0.8491 |   0.7788  0.8461 ✓
+      S=10   TR 0.6991 (1-pearson 0.1459, mse 0.0764, rank 0.4768) | VA 0.7008 (1-pearson 0.1475, mse 0.0826, rank 0.4707)
+      S=20   TR 0.7620 (1-pearson 0.1466, mse 0.0735, rank 0.5419) | VA 0.7629 (1-pearson 0.1498, mse 0.0792, rank 0.5338)
+      S=50   TR 0.8414 (1-pearson 0.1603, mse 0.0637, rank 0.6174) | VA 0.8383 (1-pearson 0.1633, mse 0.0672, rank 0.6079)
+      time 4961.6 s: training 4701.9 s (building batches 531.1 s), validation and saving 259.6 s | lr 8.3457e-04
+ 10 |   0.7787  0.8492 |   0.7780  0.8466 ✓
+      S=10   TR 0.6987 (1-pearson 0.1457, mse 0.0760, rank 0.4770) | VA 0.6986 (1-pearson 0.1452, mse 0.0786, rank 0.4748)
+      S=20   TR 0.7614 (1-pearson 0.1466, mse 0.0738, rank 0.5410) | VA 0.7609 (1-pearson 0.1486, mse 0.0717, rank 0.5405)
+      S=50   TR 0.8402 (1-pearson 0.1601, mse 0.0640, rank 0.6161) | VA 0.8393 (1-pearson 0.1640, mse 0.0614, rank 0.6139)
+      time 4961.7 s: training 4700.5 s (building batches 532.8 s), validation and saving 261.2 s | lr 7.9389e-04
+ 11 |   0.7778  0.8497 |   0.7770  0.8464 ✓
+      S=10   TR 0.6981 (1-pearson 0.1453, mse 0.0756, rank 0.4772) | VA 0.6986 (1-pearson 0.1453, mse 0.0758, rank 0.4775)
+      S=20   TR 0.7607 (1-pearson 0.1463, mse 0.0737, rank 0.5406) | VA 0.7603 (1-pearson 0.1485, mse 0.0727, rank 0.5391)
+      S=50   TR 0.8391 (1-pearson 0.1596, mse 0.0639, rank 0.6156) | VA 0.8373 (1-pearson 0.1644, mse 0.0660, rank 0.6068)
+      time 4922.0 s: training 4662.6 s (building batches 533.4 s), validation and saving 259.3 s | lr 7.5000e-04
+ 12 |   0.7772  0.8498 |   0.7764  0.8465 ✓
+      S=10   TR 0.6977 (1-pearson 0.1452, mse 0.0756, rank 0.4770) | VA 0.6998 (1-pearson 0.1485, mse 0.0685, rank 0.4828)
+      S=20   TR 0.7601 (1-pearson 0.1462, mse 0.0740, rank 0.5398) | VA 0.7606 (1-pearson 0.1505, mse 0.0728, rank 0.5373)
+      S=50   TR 0.8383 (1-pearson 0.1594, mse 0.0643, rank 0.6146) | VA 0.8349 (1-pearson 0.1617, mse 0.0674, rank 0.6059)
+      time 4957.7 s: training 4697.4 s (building batches 531.6 s), validation and saving 260.3 s | lr 7.0337e-04
+ 13 |   0.7766  0.8501 |   0.7773  0.8471
+      S=10   TR 0.6974 (1-pearson 0.1450, mse 0.0753, rank 0.4771) | VA 0.6980 (1-pearson 0.1456, mse 0.0782, rank 0.4742)
+      S=20   TR 0.7595 (1-pearson 0.1460, mse 0.0740, rank 0.5394) | VA 0.7599 (1-pearson 0.1479, mse 0.0782, rank 0.5338)
+      S=50   TR 0.8374 (1-pearson 0.1591, mse 0.0644, rank 0.6140) | VA 0.8388 (1-pearson 0.1643, mse 0.0712, rank 0.6032)
+      time 4919.8 s: training 4660.3 s (building batches 533.0 s), validation and saving 259.5 s | lr 6.5451e-04
+ 14 |   0.7758  0.8505 |   0.7739  0.8494 ✓
+      S=10   TR 0.6969 (1-pearson 0.1447, mse 0.0750, rank 0.4771) | VA 0.6967 (1-pearson 0.1441, mse 0.0777, rank 0.4748)
+      S=20   TR 0.7589 (1-pearson 0.1458, mse 0.0740, rank 0.5391) | VA 0.7578 (1-pearson 0.1467, mse 0.0773, rank 0.5339)
+      S=50   TR 0.8365 (1-pearson 0.1588, mse 0.0644, rank 0.6134) | VA 0.8329 (1-pearson 0.1605, mse 0.0683, rank 0.6041)
+      time 4968.0 s: training 4707.6 s (building batches 537.1 s), validation and saving 260.3 s | lr 6.0396e-04
+ 15 |   0.7753  0.8507 |   0.7740  0.8498
+      S=10   TR 0.6965 (1-pearson 0.1446, mse 0.0748, rank 0.4771) | VA 0.6981 (1-pearson 0.1461, mse 0.0763, rank 0.4757)
+      S=20   TR 0.7585 (1-pearson 0.1457, mse 0.0740, rank 0.5388) | VA 0.7586 (1-pearson 0.1470, mse 0.0783, rank 0.5332)
+      S=50   TR 0.8358 (1-pearson 0.1586, mse 0.0644, rank 0.6128) | VA 0.8320 (1-pearson 0.1583, mse 0.0693, rank 0.6043)
+      time 4966.5 s: training 4704.6 s (building batches 538.0 s), validation and saving 261.9 s | lr 5.5226e-04
+ 16 |   0.7747  0.8509 |   0.7735  0.8484 ✓
+      S=10   TR 0.6963 (1-pearson 0.1444, mse 0.0748, rank 0.4771) | VA 0.6968 (1-pearson 0.1466, mse 0.0725, rank 0.4778)
+      S=20   TR 0.7581 (1-pearson 0.1457, mse 0.0743, rank 0.5381) | VA 0.7578 (1-pearson 0.1483, mse 0.0738, rank 0.5357)
+      S=50   TR 0.8349 (1-pearson 0.1583, mse 0.0647, rank 0.6119) | VA 0.8321 (1-pearson 0.1600, mse 0.0675, rank 0.6046)
+      time 4939.2 s: training 4679.2 s (building batches 538.4 s), validation and saving 260.0 s | lr 5.0000e-04
+ 17 |   0.7741  0.8512 |   0.7757  0.8486
+      S=10   TR 0.6957 (1-pearson 0.1441, mse 0.0745, rank 0.4771) | VA 0.7011 (1-pearson 0.1443, mse 0.0767, rank 0.4801)
+      S=20   TR 0.7574 (1-pearson 0.1454, mse 0.0740, rank 0.5380) | VA 0.7599 (1-pearson 0.1479, mse 0.0744, rank 0.5376)
+      S=50   TR 0.8342 (1-pearson 0.1580, mse 0.0646, rank 0.6115) | VA 0.8329 (1-pearson 0.1620, mse 0.0622, rank 0.6087)
+      time 4985.5 s: training 4722.6 s (building batches 540.1 s), validation and saving 262.9 s | lr 4.4774e-04
+ 18 |   0.7735  0.8514 |   0.7738  0.8453
+      S=10   TR 0.6953 (1-pearson 0.1439, mse 0.0743, rank 0.4771) | VA 0.6969 (1-pearson 0.1468, mse 0.0736, rank 0.4766)
+      S=20   TR 0.7570 (1-pearson 0.1453, mse 0.0742, rank 0.5374) | VA 0.7584 (1-pearson 0.1506, mse 0.0736, rank 0.5342)
+      S=50   TR 0.8333 (1-pearson 0.1577, mse 0.0648, rank 0.6108) | VA 0.8323 (1-pearson 0.1646, mse 0.0607, rank 0.6070)
+      time 4957.0 s: training 4696.6 s (building batches 536.5 s), validation and saving 260.4 s | lr 3.9604e-04
+ 19 |   0.7727  0.8517 |   0.7724  0.8494 ✓
+      S=10   TR 0.6948 (1-pearson 0.1436, mse 0.0741, rank 0.4770) | VA 0.6966 (1-pearson 0.1450, mse 0.0752, rank 0.4764)
+      S=20   TR 0.7563 (1-pearson 0.1451, mse 0.0743, rank 0.5369) | VA 0.7572 (1-pearson 0.1474, mse 0.0757, rank 0.5341)
+      S=50   TR 0.8323 (1-pearson 0.1574, mse 0.0647, rank 0.6102) | VA 0.8299 (1-pearson 0.1590, mse 0.0670, rank 0.6038)
+      time 4965.0 s: training 4703.3 s (building batches 533.9 s), validation and saving 261.7 s | lr 3.4549e-04
+ 20 |   0.7723  0.8519 |   0.7721  0.8483 ✓
+      S=10   TR 0.6945 (1-pearson 0.1435, mse 0.0741, rank 0.4769) | VA 0.6960 (1-pearson 0.1459, mse 0.0737, rank 0.4764)
+      S=20   TR 0.7560 (1-pearson 0.1450, mse 0.0744, rank 0.5366) | VA 0.7570 (1-pearson 0.1485, mse 0.0743, rank 0.5342)
+      S=50   TR 0.8318 (1-pearson 0.1573, mse 0.0649, rank 0.6096) | VA 0.8299 (1-pearson 0.1614, mse 0.0638, rank 0.6047)
+      time 4968.0 s: training 4707.5 s (building batches 534.7 s), validation and saving 260.5 s | lr 2.9663e-04
+ 21 |   0.7716  0.8523 |   0.7722  0.8485
+      S=10   TR 0.6939 (1-pearson 0.1432, mse 0.0737, rank 0.4770) | VA 0.6965 (1-pearson 0.1469, mse 0.0763, rank 0.4733)
+      S=20   TR 0.7554 (1-pearson 0.1448, mse 0.0741, rank 0.5365) | VA 0.7573 (1-pearson 0.1490, mse 0.0795, rank 0.5288)
+      S=50   TR 0.8310 (1-pearson 0.1569, mse 0.0648, rank 0.6093) | VA 0.8295 (1-pearson 0.1598, mse 0.0705, rank 0.5992)
+      time 4966.5 s: training 4703.7 s (building batches 540.1 s), validation and saving 262.7 s | lr 2.5000e-04
+ 22 |   0.7711  0.8525 |   0.7706  0.8514 ✓
+      S=10   TR 0.6937 (1-pearson 0.1431, mse 0.0737, rank 0.4768) | VA 0.6950 (1-pearson 0.1435, mse 0.0758, rank 0.4757)
+      S=20   TR 0.7550 (1-pearson 0.1447, mse 0.0744, rank 0.5358) | VA 0.7556 (1-pearson 0.1458, mse 0.0775, rank 0.5323)
+      S=50   TR 0.8302 (1-pearson 0.1567, mse 0.0650, rank 0.6085) | VA 0.8279 (1-pearson 0.1573, mse 0.0663, rank 0.6043)
+      time 4995.3 s: training 4735.3 s (building batches 539.4 s), validation and saving 260.0 s | lr 2.0611e-04
+ 23 |   0.7706  0.8527 |   0.7701  0.8510 ✓
+      S=10   TR 0.6932 (1-pearson 0.1428, mse 0.0735, rank 0.4769) | VA 0.6946 (1-pearson 0.1437, mse 0.0790, rank 0.4719)
+      S=20   TR 0.7545 (1-pearson 0.1445, mse 0.0743, rank 0.5357) | VA 0.7552 (1-pearson 0.1464, mse 0.0787, rank 0.5302)
+      S=50   TR 0.8296 (1-pearson 0.1565, mse 0.0650, rank 0.6081) | VA 0.8272 (1-pearson 0.1582, mse 0.0675, rank 0.6015)
+      time 4927.9 s: training 4669.8 s (building batches 531.4 s), validation and saving 258.1 s | lr 1.6543e-04
+ 24 |   0.7700  0.8530 |   0.7697  0.8514 ✓
+      S=10   TR 0.6927 (1-pearson 0.1426, mse 0.0733, rank 0.4768) | VA 0.6944 (1-pearson 0.1437, mse 0.0764, rank 0.4743)
+      S=20   TR 0.7541 (1-pearson 0.1444, mse 0.0742, rank 0.5355) | VA 0.7551 (1-pearson 0.1464, mse 0.0794, rank 0.5293)
+      S=50   TR 0.8289 (1-pearson 0.1563, mse 0.0650, rank 0.6077) | VA 0.8265 (1-pearson 0.1568, mse 0.0707, rank 0.5991)
+      time 4981.0 s: training 4723.0 s (building batches 531.2 s), validation and saving 258.0 s | lr 1.2843e-04
+ 25 |   0.7696  0.8531 |   0.7695  0.8509 ✓
+      S=10   TR 0.6925 (1-pearson 0.1425, mse 0.0732, rank 0.4768) | VA 0.6945 (1-pearson 0.1443, mse 0.0757, rank 0.4744)
+      S=20   TR 0.7537 (1-pearson 0.1443, mse 0.0744, rank 0.5351) | VA 0.7548 (1-pearson 0.1469, mse 0.0772, rank 0.5307)
+      S=50   TR 0.8283 (1-pearson 0.1561, mse 0.0651, rank 0.6071) | VA 0.8262 (1-pearson 0.1576, mse 0.0673, rank 0.6013)
+      time 4947.9 s: training 4688.6 s (building batches 533.2 s), validation and saving 259.3 s | lr 9.5492e-05
+ 26 |   0.7692  0.8533 |   0.7691  0.8508 ✓
+      S=10   TR 0.6921 (1-pearson 0.1423, mse 0.0730, rank 0.4768) | VA 0.6940 (1-pearson 0.1436, mse 0.0750, rank 0.4754)
+      S=20   TR 0.7534 (1-pearson 0.1442, mse 0.0743, rank 0.5349) | VA 0.7546 (1-pearson 0.1468, mse 0.0771, rank 0.5306)
+      S=50   TR 0.8279 (1-pearson 0.1559, mse 0.0650, rank 0.6069) | VA 0.8257 (1-pearson 0.1582, mse 0.0666, rank 0.6009)
+      time 4974.4 s: training 4716.6 s (building batches 527.5 s), validation and saving 257.8 s | lr 6.6987e-05
+ 27 |   0.7689  0.8535 |   0.7688  0.8508 ✓
+      S=10   TR 0.6918 (1-pearson 0.1422, mse 0.0729, rank 0.4768) | VA 0.6937 (1-pearson 0.1439, mse 0.0734, rank 0.4764)
+      S=20   TR 0.7531 (1-pearson 0.1441, mse 0.0743, rank 0.5347) | VA 0.7544 (1-pearson 0.1471, mse 0.0757, rank 0.5316)
+      S=50   TR 0.8274 (1-pearson 0.1558, mse 0.0650, rank 0.6066) | VA 0.8254 (1-pearson 0.1579, mse 0.0667, rank 0.6008)
+      time 4976.6 s: training 4719.1 s (building batches 526.0 s), validation and saving 257.5 s | lr 4.3227e-05
+ 28 |   0.7686  0.8536 |   0.7685  0.8522 ✓
+      S=10   TR 0.6916 (1-pearson 0.1420, mse 0.0728, rank 0.4767) | VA 0.6935 (1-pearson 0.1431, mse 0.0768, rank 0.4736)
+      S=20   TR 0.7529 (1-pearson 0.1440, mse 0.0743, rank 0.5346) | VA 0.7540 (1-pearson 0.1455, mse 0.0788, rank 0.5298)
+      S=50   TR 0.8271 (1-pearson 0.1556, mse 0.0650, rank 0.6064) | VA 0.8251 (1-pearson 0.1566, mse 0.0682, rank 0.6002)
+      time 4898.8 s: training 4642.5 s (building batches 524.6 s), validation and saving 256.3 s | lr 2.4472e-05
+ 29 |   0.7684  0.8537 |   0.7684  0.8516 ✓
+      S=10   TR 0.6914 (1-pearson 0.1419, mse 0.0727, rank 0.4768) | VA 0.6935 (1-pearson 0.1434, mse 0.0760, rank 0.4741)
+      S=20   TR 0.7527 (1-pearson 0.1439, mse 0.0742, rank 0.5346) | VA 0.7540 (1-pearson 0.1461, mse 0.0782, rank 0.5297)
+      S=50   TR 0.8269 (1-pearson 0.1555, mse 0.0650, rank 0.6063) | VA 0.8249 (1-pearson 0.1571, mse 0.0682, rank 0.5996)
+      time 4949.1 s: training 4691.1 s (building batches 529.3 s), validation and saving 258.0 s | lr 1.0926e-05
+ 30 |   0.7682  0.8538 |   0.7683  0.8519 ✓
+      S=10   TR 0.6913 (1-pearson 0.1419, mse 0.0726, rank 0.4768) | VA 0.6933 (1-pearson 0.1432, mse 0.0765, rank 0.4736)
+      S=20   TR 0.7526 (1-pearson 0.1439, mse 0.0742, rank 0.5345) | VA 0.7539 (1-pearson 0.1459, mse 0.0785, rank 0.5295)
+      S=50   TR 0.8267 (1-pearson 0.1555, mse 0.0650, rank 0.6062) | VA 0.8247 (1-pearson 0.1569, mse 0.0682, rank 0.5996)
+      time 4969.1 s: training 4700.2 s (building batches 534.8 s), validation and saving 268.8 s | lr 2.7391e-06
+
+Total training time: 150287.9 s (2504.8 min) over 30 epochs
+
+── Per-scenario / per-size evaluation — SLIDING-WINDOW full-context inference (margin=64; corr higher=better, RF lower=better, scales with S) ──
+
+=== scenario: const ===
+   Size       set | Corr In Corr Mod Corr Rel Corr Tsi Corr Sgr |   RF In  RF Mod  RF Rel  RF Tsi  RF Sgr | Mod vs In Mod vs Rel Mod vs Tsi Mod vs Sgr | WrTrip In WrTrip Mod WrTrip Rel WrTrip Tsi WrTrip Sgr
+     10   in-dist |  0.3805   0.8780      nan      nan      nan |    8.73    3.61     nan     nan     nan |    +58.7%        n/a        n/a        n/a |    0.4493     0.1348        nan        nan        nan
+     20   in-dist |  0.4142   0.8748      nan      nan      nan |   20.71   10.92     nan     nan     nan |    +47.3%        n/a        n/a        n/a |    0.4339     0.1411        nan        nan        nan
+     50   in-dist |  0.4343   0.8623      nan      nan      nan |   59.54   42.38     nan     nan     nan |    +28.8%        n/a        n/a        n/a |    0.4237     0.1491        nan        nan        nan
+
+=== scenario: split ===
+   Size       set | Corr In Corr Mod Corr Rel Corr Tsi Corr Sgr |   RF In  RF Mod  RF Rel  RF Tsi  RF Sgr | Mod vs In Mod vs Rel Mod vs Tsi Mod vs Sgr | WrTrip In WrTrip Mod WrTrip Rel WrTrip Tsi WrTrip Sgr
+     10   in-dist |  0.4772   0.8483      nan      nan      nan |    8.39    4.17     nan     nan     nan |    +50.3%        n/a        n/a        n/a |    0.3919     0.1650        nan        nan        nan
+     20   in-dist |  0.5239   0.8534      nan      nan      nan |   21.59   12.35     nan     nan     nan |    +42.8%        n/a        n/a        n/a |    0.3665     0.1647        nan        nan        nan
+     50   in-dist |  0.5465   0.8414      nan      nan      nan |   58.54   42.15     nan     nan     nan |    +28.0%        n/a        n/a        n/a |    0.3551     0.1647        nan        nan        nan
+
+=== scenario: bott ===
+   Size       set | Corr In Corr Mod Corr Rel Corr Tsi Corr Sgr |   RF In  RF Mod  RF Rel  RF Tsi  RF Sgr | Mod vs In Mod vs Rel Mod vs Tsi Mod vs Sgr | WrTrip In WrTrip Mod WrTrip Rel WrTrip Tsi WrTrip Sgr
+     10   in-dist |  0.5420   0.9011      nan      nan      nan |    8.61    4.85     nan     nan     nan |    +43.6%        n/a        n/a        n/a |    0.3568     0.1216        nan        nan        nan
+     20   in-dist |  0.5499   0.9072      nan      nan      nan |   23.03   15.37     nan     nan     nan |    +33.2%        n/a        n/a        n/a |    0.3539     0.1198        nan        nan        nan
+     50   in-dist |  0.5467   0.8924      nan      nan      nan |   67.96   53.84     nan     nan     nan |    +20.8%        n/a        n/a        n/a |    0.3618     0.1235        nan        nan        nan
+
+=== scenario: zigzag_1s14 ===
+   Size       set | Corr In Corr Mod Corr Rel Corr Tsi Corr Sgr |   RF In  RF Mod  RF Rel  RF Tsi  RF Sgr | Mod vs In Mod vs Rel Mod vs Tsi Mod vs Sgr | WrTrip In WrTrip Mod WrTrip Rel WrTrip Tsi WrTrip Sgr
+     10   in-dist |  0.3475   0.8295      nan      nan      nan |    9.07    4.02     nan     nan     nan |    +55.6%        n/a        n/a        n/a |    0.4682     0.1920        nan        nan        nan
+     20   in-dist |  0.3864   0.8325      nan      nan      nan |   23.65   13.27     nan     nan     nan |    +43.9%        n/a        n/a        n/a |    0.4544     0.1912        nan        nan        nan
+     50   in-dist |  0.4442   0.8307      nan      nan      nan |   58.86   41.45     nan     nan     nan |    +29.6%        n/a        n/a        n/a |    0.4217     0.1888        nan        nan        nan
+
+=== ALL scenarios pooled ===
+   Size       set | Corr In Corr Mod Corr Rel Corr Tsi Corr Sgr |   RF In  RF Mod  RF Rel  RF Tsi  RF Sgr | Mod vs In Mod vs Rel Mod vs Tsi Mod vs Sgr | WrTrip In WrTrip Mod WrTrip Rel WrTrip Tsi WrTrip Sgr
+     10   in-dist |  0.4368   0.8642      nan      nan      nan |    8.70    4.16     nan     nan     nan |    +52.2%        n/a        n/a        n/a |    0.4165     0.1533        nan        nan        nan
+     20   in-dist |  0.4686   0.8670      nan      nan      nan |   22.24   12.98     nan     nan     nan |    +41.7%        n/a        n/a        n/a |    0.4021     0.1542        nan        nan        nan
+     50   in-dist |  0.4929   0.8567      nan      nan      nan |   61.23   44.95     nan     nan     nan |    +26.6%        n/a        n/a        n/a |    0.3906     0.1565        nan        nan        nan
+
+End table time: 2276.4 s

@@ -1,0 +1,73 @@
+# The config of the base checkpoint const_split_bott_zigzag_1s14__seq256_knn7w_rank3, copied unchanged below
+# these lines. src/finetune.py fine-tuned that checkpoint into this one on training_data/ooa (24 replicates of
+# 20 Mb at 10, 20, and 50 haplotypes, from src/simulate_data.py) with the shared and train blocks of the config, for
+# 10 epochs at learning rate 2e-4 (finetune.log), so the settings of the network input are the same. A checkpoint
+# stores no settings, so the shared and benchmark blocks of this copy go with it.
+# config/const_split_bott_zigzag_1s14__seq256_knn7w_rank3.yaml: the data of src/simulate_data.py, on the
+# diploid time scale with haploid samples.
+# Training data: const, split, bott, and zigzag_1s14 at 10, 20, and 50 haplotypes, 24 replicates of 20 Mb
+# (0 to 19 train, 20 to 23 validate). Testing data: const, split, bott, ooa, and zigzag_1s14 at 10, 20, ...,
+# 100 haplotypes, 100 replicates of 2 Mb.
+# The shared, train, and benchmark blocks are those of const_split_bott__seq256_knn7w_rank3.yaml, with
+# zigzag_1s14 added to the training models, and the settings of argGNN's trees in the final benchmark added to the
+# benchmark block.
+# Run: snakemake --configfile config/const_split_bott_zigzag_1s14__seq256_knn7w_rank3.yaml ...
+
+output_folder: ""                                # "" = the repo root
+label: ""                                        # optional, appended to the checkpoint prefix
+
+# which external tools run on which data (comma lists, "" = none)
+external_tools_testing_data: "relate,tsinfer,true_topology,singer"
+external_tools_training_data: ""
+
+# train and benchmark
+shared:
+  GNN_KNN_K: "7"
+  GNN_SEQ_LEN: "256"
+  GNN_MP_LAYERS: "4"
+  GNN_DECODER: "avg_constr"
+  GNN_HIDDEN: "128"
+  GNN_GRU_HIDDEN: "128"
+  GNN_GRU_LAYERS: "2"
+  GNN_METRIC_DIM: "64"
+  GNN_VS_TRAIN_SIZES: "10,20,50"
+  GNN_VS_TEST_SIZES: "100"
+
+# paths relative to the repo root (the Snakefile makes them absolute)
+tool_paths:
+  GNN_RELATE_BIN: "bin/relate_v1.2.4_x86_64_static/bin/Relate"
+  GNN_RELATE_FMT: "bin/relate_v1.2.4_x86_64_static/bin/RelateFileFormats"
+  GNN_RELATE_SCRIPTS: "bin/relate_v1.2.4_x86_64_static/scripts"
+  GNN_SINGER_DIR: "bin/singer-0.1.9-beta-linux-x86_64"
+
+training_data:
+  GNN_VS_SCENARIOS: "const,split,bott,zigzag_1s14"
+  GNN_VS_SIZES: "10,20,50"
+  GNN_VS_FILES: "24"
+  GNN_VS_SEQLEN: "20_000_000"
+
+testing_data:
+  GNN_VS_SCENARIOS: "const,split,bott,ooa,zigzag_1s14"
+  GNN_VS_SIZES: "10,20,30,40,50,60,70,80,90,100"
+  GNN_VS_FILES: "100"
+  GNN_VS_SEQLEN: "2_000_000"
+
+train:
+  GNN_RANK_WEIGHT: "1.0"
+  GNN_RANK_LEVELS: "3"
+  GNN_VS_SCENARIOS: "const,split,bott,zigzag_1s14"
+  GNN_GRAD_CKPT: "1"
+
+benchmark:
+  GNN_DIAG_ALL_FILES: "1"
+  GNN_MUT_RATE: "1.25e-8"
+  # argGNN's trees as in the final benchmark: bridge_noroot with a root tolerance of 1 clade switch, the tree
+  # changes at the midpoints between SNPs, and node times from POLEGON ("tsdate" for tsdate).
+  GNN_BL_ASSEMBLY: "bridge_noroot"
+  GNN_BL_EPS: "1.0"
+  GNN_BL_ROOT_TOL: "1"
+  GNN_BL_ROOT_METRIC: "clade"
+  GNN_BL_ROOT_CMP: "anchor"
+  GNN_BL_BREAKPOINTS: "midpoint"
+  GNN_DATING_METHOD: "polegon"
+  GNN_POLEGON_DIR: "bin/polegon-0.1.3-alpha-linux-x86_64"

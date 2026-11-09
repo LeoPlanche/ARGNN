@@ -1,0 +1,29 @@
+# hpc/profile/config.yaml: Slurm profile for the Snakefile.
+# The run times below are for the check run (config/pipeline_check.yaml). A full run needs longer ones.
+# --set-resources replaces the whole set-resources block below, so a full run lists every entry again.
+# hpc/scripts/snakemake_driver.sh shows the command of the first full run.
+# rerun-triggers mtime: a job runs when one of its outputs is missing or older than one of its
+# inputs, not when the config or the text of a rule changes.
+# rerun-incomplete: outputs left half-written by a cancelled run are made again.
+# Only train_model asks for a GPU. The scoring rules run on CPUs.
+executor: slurm
+jobs: 100
+latency-wait: 60
+printshellcmds: true
+rerun-triggers: mtime
+rerun-incomplete: true
+slurm-logdir: hpc/logs/slurm
+slurm-keep-successful-logs: true
+slurm-no-account: true
+default-resources:
+  slurm_partition: "batch"
+  runtime: 60
+  mem_mb: 8192
+  cpus_per_task: 1
+set-resources:
+  train_model:
+    slurm_partition: "gpu"
+    gres: "gpu:1"
+    constraint: "l40s|a6000|a40"
+    cpus_per_task: 8
+    mem_mb: 65536
