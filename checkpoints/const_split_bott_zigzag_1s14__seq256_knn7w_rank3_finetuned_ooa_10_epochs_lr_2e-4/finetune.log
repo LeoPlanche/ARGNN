@@ -1,0 +1,115 @@
+Fine-tune | base=checkpoints/const_split_bott_zigzag_1s14__seq256_knn7w_rank3/const_split_bott_zigzag_1s14__seq256_knn7w_rank3.pt | data=training_data/ooa suffix='.trees' | out=checkpoints/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_ooa_10_epochs_lr_2e-4/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_ooa_10_epochs_lr_2e-4.pt
+          | epochs=10 lr=0.0002 batch=16 test_frac=0.2 | device=cuda
+          | input config: SEQ_LEN=256 hap_window=1(k=0) mse_w=1.0 rank_w=1.0(levels=3)
+  inferred arch: hidden=128 mp=4 gru=128x2 metric=64 type=8 feat=1 edge_feat=1 jk=None N=199
+72 files (sizes [10, 20, 50]) → 57 train / 15 test
+  S=10: 1501 train / 403 val seqs, val files ['ooa_S10_22.trees', 'ooa_S10_13.trees', 'ooa_S10_4.trees', 'ooa_S10_9.trees', 'ooa_S10_20.trees']
+  S=20: 2078 train / 558 val seqs, val files ['ooa_S20_17.trees', 'ooa_S20_9.trees', 'ooa_S20_15.trees', 'ooa_S20_11.trees', 'ooa_S20_7.trees']
+  S=50: 3139 train / 835 val seqs, val files ['ooa_S50_0.trees', 'ooa_S50_4.trees', 'ooa_S50_13.trees', 'ooa_S50_16.trees', 'ooa_S50_15.trees']
+  Loading time: 1011.4 s
+  Parameters: 924,306
+  Base model evaluation time: 1529.1 s
+
+ Ep |  TR loss TR corr |  TE loss TE corr
+──────────────────────────────────────────────
+      per size: loss (1-pearson, mse, rank), loss = 1-pearson + 1 * mse + 1 * rank
+  0 |   0.7992  0.8334 |   0.7976  0.8339  (input model)
+      S=10   TR 0.7138 (1-pearson 0.1630, mse 0.0716, rank 0.4792) | VA 0.7153 (1-pearson 0.1650, mse 0.0725, rank 0.4778)
+      S=20   TR 0.7764 (1-pearson 0.1622, mse 0.0748, rank 0.5394) | VA 0.7764 (1-pearson 0.1632, mse 0.0750, rank 0.5382)
+      S=50   TR 0.8550 (1-pearson 0.1736, mse 0.0677, rank 0.6137) | VA 0.8520 (1-pearson 0.1710, mse 0.0676, rank 0.6134)
+  1 |   0.7998  0.8341 |   0.7966  0.8351 ✓
+      S=10   TR 0.7149 (1-pearson 0.1629, mse 0.0680, rank 0.4841) | VA 0.7149 (1-pearson 0.1655, mse 0.0674, rank 0.4820)
+      S=20   TR 0.7769 (1-pearson 0.1612, mse 0.0704, rank 0.5453) | VA 0.7755 (1-pearson 0.1624, mse 0.0723, rank 0.5409)
+      S=50   TR 0.8554 (1-pearson 0.1723, mse 0.0646, rank 0.6185) | VA 0.8506 (1-pearson 0.1691, mse 0.0679, rank 0.6136)
+      time 700.9 s: training 650.3 s (building batches 71.7 s), validation and saving 50.6 s | lr 2.0000e-04
+  2 |   0.7983  0.8350 |   0.7960  0.8352 ✓
+      S=10   TR 0.7135 (1-pearson 0.1622, mse 0.0667, rank 0.4846) | VA 0.7142 (1-pearson 0.1636, mse 0.0708, rank 0.4798)
+      S=20   TR 0.7753 (1-pearson 0.1604, mse 0.0694, rank 0.5455) | VA 0.7748 (1-pearson 0.1615, mse 0.0729, rank 0.5404)
+      S=50   TR 0.8540 (1-pearson 0.1712, mse 0.0638, rank 0.6189) | VA 0.8501 (1-pearson 0.1689, mse 0.0659, rank 0.6152)
+      time 702.4 s: training 652.3 s (building batches 67.1 s), validation and saving 50.2 s | lr 1.9511e-04
+  3 |   0.7979  0.8353 |   0.7963  0.8338
+      S=10   TR 0.7130 (1-pearson 0.1619, mse 0.0664, rank 0.4847) | VA 0.7148 (1-pearson 0.1651, mse 0.0678, rank 0.4819)
+      S=20   TR 0.7748 (1-pearson 0.1601, mse 0.0690, rank 0.5457) | VA 0.7752 (1-pearson 0.1624, mse 0.0706, rank 0.5422)
+      S=50   TR 0.8537 (1-pearson 0.1709, mse 0.0634, rank 0.6194) | VA 0.8503 (1-pearson 0.1701, mse 0.0638, rank 0.6163)
+      time 698.8 s: training 648.3 s (building batches 67.0 s), validation and saving 50.5 s | lr 1.8090e-04
+  4 |   0.7973  0.8357 |   0.7967  0.8334
+      S=10   TR 0.7123 (1-pearson 0.1616, mse 0.0661, rank 0.4847) | VA 0.7144 (1-pearson 0.1645, mse 0.0668, rank 0.4832)
+      S=20   TR 0.7743 (1-pearson 0.1598, mse 0.0685, rank 0.5461) | VA 0.7753 (1-pearson 0.1632, mse 0.0682, rank 0.5438)
+      S=50   TR 0.8530 (1-pearson 0.1705, mse 0.0628, rank 0.6197) | VA 0.8512 (1-pearson 0.1720, mse 0.0626, rank 0.6167)
+      time 701.0 s: training 650.5 s (building batches 67.4 s), validation and saving 50.5 s | lr 1.5878e-04
+  5 |   0.7969  0.8360 |   0.7955  0.8361 ✓
+      S=10   TR 0.7120 (1-pearson 0.1613, mse 0.0658, rank 0.4848) | VA 0.7145 (1-pearson 0.1621, mse 0.0710, rank 0.4814)
+      S=20   TR 0.7738 (1-pearson 0.1595, mse 0.0682, rank 0.5461) | VA 0.7742 (1-pearson 0.1604, mse 0.0712, rank 0.5427)
+      S=50   TR 0.8526 (1-pearson 0.1701, mse 0.0626, rank 0.6200) | VA 0.8492 (1-pearson 0.1685, mse 0.0651, rank 0.6155)
+      time 698.3 s: training 648.8 s (building batches 67.2 s), validation and saving 49.5 s | lr 1.3090e-04
+  6 |   0.7963  0.8365 |   0.7949  0.8367 ✓
+      S=10   TR 0.7114 (1-pearson 0.1610, mse 0.0655, rank 0.4849) | VA 0.7134 (1-pearson 0.1626, mse 0.0706, rank 0.4802)
+      S=20   TR 0.7734 (1-pearson 0.1592, mse 0.0680, rank 0.5462) | VA 0.7740 (1-pearson 0.1602, mse 0.0734, rank 0.5405)
+      S=50   TR 0.8519 (1-pearson 0.1696, mse 0.0623, rank 0.6199) | VA 0.8486 (1-pearson 0.1673, mse 0.0664, rank 0.6149)
+      time 703.9 s: training 650.6 s (building batches 67.4 s), validation and saving 53.4 s | lr 1.0000e-04
+  7 |   0.7958  0.8368 |   0.7943  0.8361 ✓
+      S=10   TR 0.7110 (1-pearson 0.1608, mse 0.0653, rank 0.4849) | VA 0.7131 (1-pearson 0.1635, mse 0.0672, rank 0.4825)
+      S=20   TR 0.7730 (1-pearson 0.1590, mse 0.0677, rank 0.5462) | VA 0.7733 (1-pearson 0.1612, mse 0.0695, rank 0.5427)
+      S=50   TR 0.8513 (1-pearson 0.1693, mse 0.0621, rank 0.6199) | VA 0.8480 (1-pearson 0.1682, mse 0.0629, rank 0.6169)
+      time 700.1 s: training 649.7 s (building batches 74.7 s), validation and saving 50.5 s | lr 6.9098e-05
+  8 |   0.7954  0.8370 |   0.7942  0.8359 ✓
+      S=10   TR 0.7106 (1-pearson 0.1605, mse 0.0651, rank 0.4849) | VA 0.7130 (1-pearson 0.1636, mse 0.0668, rank 0.4826)
+      S=20   TR 0.7726 (1-pearson 0.1588, mse 0.0676, rank 0.5462) | VA 0.7733 (1-pearson 0.1613, mse 0.0695, rank 0.5425)
+      S=50   TR 0.8510 (1-pearson 0.1691, mse 0.0619, rank 0.6201) | VA 0.8479 (1-pearson 0.1682, mse 0.0634, rank 0.6163)
+      time 698.2 s: training 648.7 s (building batches 67.2 s), validation and saving 49.5 s | lr 4.1221e-05
+  9 |   0.7951  0.8371 |   0.7941  0.8363 ✓
+      S=10   TR 0.7102 (1-pearson 0.1604, mse 0.0649, rank 0.4850) | VA 0.7129 (1-pearson 0.1635, mse 0.0688, rank 0.4806)
+      S=20   TR 0.7723 (1-pearson 0.1587, mse 0.0674, rank 0.5462) | VA 0.7732 (1-pearson 0.1610, mse 0.0715, rank 0.5408)
+      S=50   TR 0.8507 (1-pearson 0.1690, mse 0.0618, rank 0.6200) | VA 0.8477 (1-pearson 0.1679, mse 0.0649, rank 0.6149)
+      time 700.1 s: training 649.8 s (building batches 67.2 s), validation and saving 50.3 s | lr 1.9098e-05
+ 10 |   0.7948  0.8374 |   0.7939  0.8365 ✓
+      S=10   TR 0.7100 (1-pearson 0.1602, mse 0.0650, rank 0.4848) | VA 0.7126 (1-pearson 0.1630, mse 0.0673, rank 0.4824)
+      S=20   TR 0.7721 (1-pearson 0.1585, mse 0.0674, rank 0.5462) | VA 0.7730 (1-pearson 0.1607, mse 0.0699, rank 0.5424)
+      S=50   TR 0.8503 (1-pearson 0.1687, mse 0.0617, rank 0.6199) | VA 0.8475 (1-pearson 0.1678, mse 0.0637, rank 0.6161)
+      time 701.9 s: training 651.7 s (building batches 67.7 s), validation and saving 50.1 s | lr 4.8943e-06
+
+Total training time: 7005.6 s (116.8 min) over 10 epochs
+
+Best (lowest held-out loss) fine-tuned model → checkpoints/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_ooa_10_epochs_lr_2e-4/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_ooa_10_epochs_lr_2e-4.pt
+
+── Held-out test: fine-tuned vs base (corr & triplet-acc ↑ better, RF ↓ better) ──
+  S=10 (4852 trees)
+    metric               base  fine-tuned   Δ (ft−base)  input tree
+    corr ↑             0.8387      0.8404       +0.0017      0.3888
+    RF ↓               5.0260      4.9918       -0.0342     10.0185
+    triplet acc ↑      0.8133      0.8178       +0.0045      0.5597
+    held-out file                 trees | corr base      ft |   RF base        ft | trip base      ft
+    ooa_S10_22.trees                969 |    0.8458  0.8473 |    4.7141    4.6811 |    0.8220  0.8261
+    ooa_S10_13.trees                995 |    0.8402  0.8421 |    5.1477    5.0673 |    0.8167  0.8212
+    ooa_S10_4.trees                 960 |    0.8417  0.8432 |    5.1854    5.1771 |    0.8111  0.8180
+    ooa_S10_9.trees                 964 |    0.8268  0.8283 |    5.1971    5.1992 |    0.8008  0.8047
+    ooa_S10_20.trees                964 |    0.8389  0.8411 |    4.8838    4.8340 |    0.8157  0.8191
+  S=20 (4889 trees)
+    metric               base  fine-tuned   Δ (ft−base)  input tree
+    corr ↑             0.8421      0.8444       +0.0023      0.4386
+    RF ↓              16.3174     16.1346       -0.1829     26.2532
+    triplet acc ↑      0.8111      0.8170       +0.0059      0.5843
+    held-out file                 trees | corr base      ft |   RF base        ft | trip base      ft
+    ooa_S20_17.trees                985 |    0.8495  0.8526 |   16.2030   15.9939 |    0.8178  0.8245
+    ooa_S20_9.trees                 980 |    0.8410  0.8431 |   16.0388   15.8898 |    0.8081  0.8136
+    ooa_S20_15.trees                971 |    0.8385  0.8407 |   16.7580   16.5911 |    0.8065  0.8111
+    ooa_S20_11.trees                973 |    0.8368  0.8385 |   16.1089   15.9548 |    0.8107  0.8167
+    ooa_S20_7.trees                 980 |    0.8446  0.8468 |   16.4816   16.2469 |    0.8123  0.8189
+  S=50 (4943 trees)
+    metric               base  fine-tuned   Δ (ft−base)  input tree
+    corr ↑             0.8340      0.8370       +0.0030      0.4942
+    RF ↓              55.6399     55.3340       -0.3059     72.5794
+    triplet acc ↑      0.8046      0.8096       +0.0050      0.6140
+    held-out file                 trees | corr base      ft |   RF base        ft | trip base      ft
+    ooa_S50_0.trees                 992 |    0.8398  0.8424 |   55.3065   54.9758 |    0.8095  0.8121
+    ooa_S50_4.trees                 981 |    0.8376  0.8405 |   55.6330   55.4190 |    0.8070  0.8132
+    ooa_S50_13.trees                988 |    0.8255  0.8287 |   55.5830   55.3583 |    0.7945  0.7979
+    ooa_S50_16.trees                989 |    0.8339  0.8375 |   56.3195   56.0243 |    0.8082  0.8140
+    ooa_S50_15.trees                993 |    0.8333  0.8363 |   55.3595   54.8963 |    0.8038  0.8109
+  ALL sizes pooled (14684 trees)
+    metric               base  fine-tuned   Δ (ft−base)  input tree
+    corr ↑             0.8382      0.8406       +0.0024      0.4409
+    RF ↓              25.8233     25.6482       -0.1752     36.4834
+    triplet acc ↑      0.8096      0.8148       +0.0051      0.5862
+
+End table time: 1538.0 s

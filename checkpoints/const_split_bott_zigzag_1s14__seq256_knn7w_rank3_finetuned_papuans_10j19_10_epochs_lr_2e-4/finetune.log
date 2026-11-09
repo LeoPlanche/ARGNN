@@ -1,0 +1,64 @@
+Fine-tune | base=checkpoints/const_split_bott_zigzag_1s14__seq256_knn7w_rank3/const_split_bott_zigzag_1s14__seq256_knn7w_rank3.pt | data=training_data/papuans_10j19 suffix='.trees' | out=checkpoints/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_papuans_10j19_10_epochs_lr_2e-4/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_papuans_10j19_10_epochs_lr_2e-4.pt
+          | epochs=10 lr=0.0002 batch=16 test_frac=0.2 | device=cuda
+          | input config: SEQ_LEN=256 hap_window=1(k=0) mse_w=1.0 rank_w=1.0(levels=3)
+  inferred arch: hidden=128 mp=4 gru=128x2 metric=64 type=8 feat=1 edge_feat=1 jk=None N=199
+24 files (sizes [52]) → 19 train / 5 test
+  S=52: 13068 train / 3453 val seqs, val files ['papuans_10j19_S52_22.trees', 'papuans_10j19_S52_13.trees', 'papuans_10j19_S52_4.trees', 'papuans_10j19_S52_9.trees', 'papuans_10j19_S52_20.trees']
+  Loading time: 8088.6 s
+  Parameters: 924,306
+  Base model evaluation time: 7700.3 s
+
+ Ep |  TR loss TR corr |  TE loss TE corr
+──────────────────────────────────────────────
+      per size: loss (1-pearson, mse, rank), loss = 1-pearson + 1 * mse + 1 * rank
+  0 |   0.8153  0.8480 |   0.8161  0.8476  (input model)
+      S=52   TR 0.8153 (1-pearson 0.1530, mse 0.0661, rank 0.5961) | VA 0.8161 (1-pearson 0.1535, mse 0.0662, rank 0.5964)
+  1 |   0.8152  0.8506 |   0.8130  0.8484 ✓
+      S=52   TR 0.8152 (1-pearson 0.1503, mse 0.0670, rank 0.5978) | VA 0.8130 (1-pearson 0.1525, mse 0.0721, rank 0.5885)
+      time 3274.2 s: training 3027.3 s (building batches 371.2 s), validation and saving 247.0 s | lr 2.0000e-04
+  2 |   0.8135  0.8503 |   0.8120  0.8494 ✓
+      S=52   TR 0.8135 (1-pearson 0.1508, mse 0.0694, rank 0.5933) | VA 0.8120 (1-pearson 0.1516, mse 0.0742, rank 0.5862)
+      time 3254.1 s: training 3013.8 s (building batches 355.7 s), validation and saving 240.3 s | lr 1.9511e-04
+  3 |   0.8126  0.8500 |   0.8126  0.8460
+      S=52   TR 0.8126 (1-pearson 0.1511, mse 0.0709, rank 0.5906) | VA 0.8126 (1-pearson 0.1551, mse 0.0775, rank 0.5800)
+      time 3193.7 s: training 2956.6 s (building batches 348.9 s), validation and saving 237.1 s | lr 1.8090e-04
+  4 |   0.8119  0.8499 |   0.8115  0.8469 ✓
+      S=52   TR 0.8119 (1-pearson 0.1513, mse 0.0718, rank 0.5888) | VA 0.8115 (1-pearson 0.1543, mse 0.0749, rank 0.5823)
+      time 3162.9 s: training 2928.8 s (building batches 344.6 s), validation and saving 234.2 s | lr 1.5878e-04
+  5 |   0.8113  0.8498 |   0.8109  0.8476 ✓
+      S=52   TR 0.8113 (1-pearson 0.1513, mse 0.0723, rank 0.5876) | VA 0.8109 (1-pearson 0.1535, mse 0.0753, rank 0.5821)
+      time 3140.3 s: training 2907.9 s (building batches 339.0 s), validation and saving 232.4 s | lr 1.3090e-04
+  6 |   0.8108  0.8499 |   0.8105  0.8478 ✓
+      S=52   TR 0.8108 (1-pearson 0.1513, mse 0.0727, rank 0.5868) | VA 0.8105 (1-pearson 0.1532, mse 0.0759, rank 0.5813)
+      time 3139.6 s: training 2905.6 s (building batches 340.4 s), validation and saving 234.0 s | lr 1.0000e-04
+  7 |   0.8103  0.8500 |   0.8101  0.8483 ✓
+      S=52   TR 0.8103 (1-pearson 0.1512, mse 0.0728, rank 0.5863) | VA 0.8101 (1-pearson 0.1529, mse 0.0757, rank 0.5816)
+      time 3134.6 s: training 2900.8 s (building batches 340.2 s), validation and saving 233.9 s | lr 6.9098e-05
+  8 |   0.8098  0.8502 |   0.8099  0.8481 ✓
+      S=52   TR 0.8098 (1-pearson 0.1511, mse 0.0729, rank 0.5859) | VA 0.8099 (1-pearson 0.1532, mse 0.0768, rank 0.5798)
+      time 3146.0 s: training 2912.4 s (building batches 340.5 s), validation and saving 233.6 s | lr 4.1221e-05
+  9 |   0.8095  0.8503 |   0.8096  0.8474 ✓
+      S=52   TR 0.8095 (1-pearson 0.1509, mse 0.0728, rank 0.5857) | VA 0.8096 (1-pearson 0.1538, mse 0.0769, rank 0.5790)
+      time 3132.8 s: training 2898.5 s (building batches 340.3 s), validation and saving 234.4 s | lr 1.9098e-05
+ 10 |   0.8093  0.8504 |   0.8095  0.8477 ✓
+      S=52   TR 0.8093 (1-pearson 0.1509, mse 0.0728, rank 0.5856) | VA 0.8095 (1-pearson 0.1536, mse 0.0766, rank 0.5793)
+      time 3137.0 s: training 2902.5 s (building batches 340.9 s), validation and saving 234.5 s | lr 4.8943e-06
+
+Total training time: 31715.4 s (528.6 min) over 10 epochs
+
+Best (lowest held-out loss) fine-tuned model → checkpoints/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_papuans_10j19_10_epochs_lr_2e-4/const_split_bott_zigzag_1s14__seq256_knn7w_rank3_finetuned_papuans_10j19_10_epochs_lr_2e-4.pt
+
+── Held-out test: fine-tuned vs base (corr & triplet-acc ↑ better, RF ↓ better) ──
+  S=52 (4984 trees)
+    metric               base  fine-tuned   Δ (ft−base)  input tree
+    corr ↑             0.8477      0.8478       +0.0002      0.4674
+    RF ↓              48.7223     48.2500       -0.4723     64.1581
+    triplet acc ↑      0.8357      0.8376       +0.0020      0.5974
+    held-out file                 trees | corr base      ft |   RF base        ft | trip base      ft
+    papuans_10j19_S52_22.trees      998 |    0.8425  0.8426 |   48.6212   48.2826 |    0.8320  0.8332
+    papuans_10j19_S52_13.trees      997 |    0.8484  0.8479 |   48.1083   47.6008 |    0.8386  0.8395
+    papuans_10j19_S52_4.trees       997 |    0.8514  0.8524 |   49.3501   48.7382 |    0.8381  0.8392
+    papuans_10j19_S52_9.trees       996 |    0.8522  0.8524 |   48.9618   48.4759 |    0.8406  0.8441
+    papuans_10j19_S52_20.trees      996 |    0.8438  0.8437 |   48.5703   48.1526 |    0.8291  0.8322
+
+End table time: 7541.9 s

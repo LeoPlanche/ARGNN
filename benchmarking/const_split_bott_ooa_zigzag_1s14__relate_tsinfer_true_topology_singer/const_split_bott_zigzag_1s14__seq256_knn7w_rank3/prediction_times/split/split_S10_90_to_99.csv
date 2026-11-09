@@ -1,0 +1,11 @@
+model,size,replicate,wall_seconds_predict,identical_to_kept,max_abs_difference,node,checkpoint_md5
+split,10,90,18.02,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,91,17.3,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,92,18.33,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,93,17.74,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,94,18.46,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,95,17.76,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,96,18.11,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,97,17.04,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,98,18.65,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
+split,10,99,17.73,True,0.0,node2349.oscar.ccv.brown.edu,ce3c00d33f2a6d7f1bb6214740bf894c
